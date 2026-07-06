@@ -1,7 +1,7 @@
 {
   "name": "kuino",
-  "version": "0.2.2",
-  "description": "Shared ESP32/Arduino helpers for vukyn IoT firmware: WiFi connect, HTTPS+JSON client, U8g2 display helpers, button debounce, YX5300/YX6300 serial MP3 driver.",
+  "version": "0.3.0",
+  "description": "Shared ESP32/Arduino helpers for vukyn IoT firmware: WiFi connect, HTTPS+JSON client, U8g2 display helpers, button debounce, YX5300/YX6300 serial MP3 driver (with response/event reading).",
   "keywords": ["esp32", "arduino", "iot", "wifi", "json", "u8g2", "oled", "mp3", "yx5300"],
   "repository": { "type": "git", "url": "https://github.com/vukyn/kuino.git" },
   "authors": [{ "name": "vukyn" }],
