@@ -55,9 +55,11 @@ bool YX5300::readFrame(uint8_t &cmd, uint16_t &param, uint32_t timeoutMs) {
       buf[n++] = b;
       if (b == 0xEF) break;
     }
-    // A valid frame is at least 8 bytes and ends in 0xEF. cmd and the 16-bit
-    // data sit at fixed offsets in both frame variants.
-    if (n >= 8 && buf[n - 1] == 0xEF) {
+    // Accept only a structurally valid frame: >=8 bytes, version 0xFF +
+    // length 0x06 header, and a 0xEF terminator. Validating the header rejects
+    // misaligned reads (e.g. a 0x7E that was actually a data byte), which would
+    // otherwise surface as phantom commands / spurious SD in-out events.
+    if (n >= 8 && buf[1] == 0xFF && buf[2] == 0x06 && buf[n - 1] == 0xEF) {
       cmd = buf[3];
       param = (static_cast<uint16_t>(buf[5]) << 8) | buf[6];
       return true;
